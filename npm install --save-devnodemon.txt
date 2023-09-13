@@ -1,0 +1,6 @@
+npm install --save-devnodemon
+
+"start":"nodeindex.js",
+"dev":"nodemonindex.js"
+
+npm run dev
