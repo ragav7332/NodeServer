@@ -6,6 +6,11 @@ import 'dotenv/config'
 const app = express()
 app.use(express.json())
 const PORT = 9000
+
+// DEPLYED IN RENDER => https://nodeserver-productapp.onrender.com
+
+
+
 // const Products = [
 //     {
 //         id:1,
