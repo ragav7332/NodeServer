@@ -1,9 +1,8 @@
 import express from "express"
 import { MongoClient } from 'mongodb'
-//import { productRouter } from "./routes/productRouter"
-// const express = require('express')
+import { productRouter } from "./path/products.js"
 import 'dotenv/config'
-const app = express()
+export const app = express()
 app.use(express.json())
 const PORT = 9000
 
@@ -54,58 +53,14 @@ const PORT = 9000
       console.log("Mongodb is connected")
       return client
     }
-    const client = createConnection()
+    export const client = createConnection()
 
   app.get('/',(req,res)=>{
     res.send("Hello Everone")
   })
-  // app.get('/products',(req,res)=>{
-  //   
-  //   res.send(products)
-  // })
-  app.get('/products',async(req,res)=>{
-    const products = await client.db("Items").collection("luxeryprod").find().toArray()
-    console.log(products)
-    res.send(products)
-  })
 
-  app.get('/products/:id',async(req,res)=>{
-    const {id} = req.params
-    console.log(req.params,id)
-    const product=await client.db("Items").collection("luxeryprod").findOne({id:id})
-    console.log(product)
-    //const product = Products.filter((pd)=>pd.id==id)
-    res.send(product)
-  })
-  app.delete('/products/:id',async(req,res)=>{
-    const {id} = req.params
-    console.log(req.params,id)
-    const product=await client.db("Items").collection("luxeryprod").deleteOne({id:id})
-    console.log(product)
-    //const product = Products.filter((pd)=>pd.id==id)
-    res.send(product)
-  })
-  app.get('/products', async(req,res)=>{
-    const {category} = req.query
-    console.log(req.query,category)
-    //let filteredProducts = Products
-    // if(category){
-    //     filteredProducts = filteredProducts.filter((pd) => pd.category == category)
-    // }
-    // if(rating){
-    //   filteredproduct = filteredproduct.filter((pd)=>pd.rating== rating)
-    //   }
-    //const product = Products.filter((pd)=>pd.category==category)
-    const product=await client.db("Items").collection("luxeryprod").find(req.query).toArray()
-    res.send(product)
-  })
-  //UPDATE
-  app.post('/products',async(req,res)=>{
-    const newProduct = req.body
-    const product=await client.db("Items").collection("luxeryprod").insertMany(newProduct)
-    console.log(product)
-    //const product = Products.filter((pd)=>pd.id==id)
-    res.send(product)
-  })
-  // app.use("/products", productRouter)
+  app.use("/products", productRouter)
+
   app.listen(PORT,()=>console.log("Server started in 9000"))
+
+

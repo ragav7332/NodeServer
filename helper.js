@@ -1,17 +1,20 @@
-// import { client } from "./server.js";
-// async function getAllProducts(req){
-//     return await client.db("Items").collection("product").find(req.query).toArray();
-// }
-// async function getProductbyId(id){
-//     return await client.db("Items").collection("product").findOne({id:id});
-// }
-// async function deleteProduct(id){
-//     return await client.db("Items").collection("product").deleteOne({ id:id });
-// }
-// async function addProduct(newProduct){
-//     return await client.db("Items").collection("product").insertMany(newProduct);
-// }
-// async function updateProducts(id,updateProduct){
-//     return await client.db("Items").collection("product").updateOne({ id:id },{ $set: updateProduct});
-// }
-// export {getAllProducts,getProductbyId,deleteProduct,addProduct,updateProducts}
+import { client } from "./server.js";
+
+export async function getallProducts() {
+  return await client.db("Items").collection("luxeryprod").find().toArray();
+}
+export async function getProductbyId(id) {
+  return await client.db("Items").collection("luxeryprod").findOne({ id: id });
+}
+export async function deleteProduct(id) {
+  return await client.db("Items").collection("luxeryprod").deleteOne({ id: id });
+}
+export async function getProductByCategory(req) {
+  return await client.db("Items").collection("luxeryprod").find(req.query).toArray();
+}
+export async function addProducts(newProduct) {
+  return await client.db("Items").collection("luxeryprod").insertMany(newProduct);
+}
+export async function updateProducts(id,updateProduct) {
+  return await client.db("Items").collection("luxeryprod").updateOne({id:id},{$set: updateProduct });
+}
