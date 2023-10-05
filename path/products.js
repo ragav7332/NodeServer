@@ -37,6 +37,8 @@ router.get('/', async (req, res) => {
   // if(rating){
   //   filteredproduct = filteredproduct.filter((pd)=>pd.rating== rating)
   //   }
+  //if(price){
+    //   filteredproduct = filteredproduct.filter((pd)=>pd.price== price) }
   //const product = Products.filter((pd)=>pd.category==category)
   const product = await getProductByCategory(req)
   res.send(product)
